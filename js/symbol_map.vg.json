@@ -1,28 +1,29 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 450,
+  "width": 750,
+  "height": 500,
   "title": {
-    "text": "Australia Airports Distribution",
-    "fontSize": 24,  
-    "font": "Arial",  
-    "anchor": "middle"  
+    "text": "Geographical Distribution of Major Airports in Australia 📍",
+    "fontSize": 18,
+    "font": "Arial",
+    "anchor": "middle"
   },
   "projection": {
-    "type": "mercator", 
+    "type": "mercator",
     "scale": 630,
-    "center": [135, -28]
+    "center": [145, -28],
+    "translate": [400, 250] 
   },
   "layer": [
     {
       "data": {
         "graticule": {
-          "step": [10, 10]  
+          "step": [10, 10]
         }
       },
       "mark": {
         "type": "geoshape",
-        "stroke": "gray",  
+        "stroke": null,         
         "strokeWidth": 0.25
       }
     },
@@ -31,17 +32,21 @@
         "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_hw_week10/refs/heads/main/js/aus_map.json",
         "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
       },
-      "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "gray"}
+      "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "gray"}  
     },
-
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_hw_week10/refs/heads/main/data/au-airports.csv"
+        "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/australian_airports.csv",
+        "format": {"type": "csv"}
       },
       "transform": [
         {
           "calculate": "datum.type === 'large_airport' ? 'Large Airport' : datum.type === 'medium_airport' ? 'Medium Airport' : datum.type",
           "as": "airport_label"
+        },
+        {
+          "calculate": "datum.score >= 1000000 ? 'Category 1' : datum.score >= 500000 ? 'Category 2' : datum.score >= 10000 ? 'Category 3' : 'Category 4'",
+          "as": "score_category"
         }
       ],
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
@@ -49,32 +54,78 @@
         "longitude": {"field": "longitude_deg", "type": "quantitative"},
         "latitude": {"field": "latitude_deg", "type": "quantitative"},
         "size": {
-          "condition": {
-            "test": "datum.type === 'large_airport'",  
-            "value": 250  
+          "field": "score_category",
+          "type": "nominal",
+          "title": "Score Category",
+          "scale": {
+            "domain": ["Category 1", "Category 2", "Category 3", "Category 4"],
+            "range": [800, 200, 100, 50]
           },
-          "value": 50  
+          "legend": {
+          "title": "Score Category",
+          "orient": "right",           
+          "offset": -20                
+      }
         },
         "color": {
-          "field": "airport_label",  
+          "field": "airport_label",
           "type": "nominal",
           "title": "Airport Type",
           "scale": {
             "domain": ["Large Airport", "Medium Airport"],
-            "range": ["red", "blue"]
+            "range": ["purple", "darkblue"]
           },
           "legend": {
             "title": "Airport Type",
-            "labelFontSize": 14,
-            "titleFontSize": 18
+            "labelFontSize": 12,
+            "titleFontSize": 13
+
           }
         },
         "tooltip": [
           {"field": "name", "title": "Airport Name"},
           {"field": "region_name", "title": "Region Name"},
-          {"field": "airport_label", "title": "Airport Type"}
-          ]
+          {"field": "airport_label", "title": "Airport Type"},
+          {"field": "score", "title": "Score"},
+          {"field": "score_category", "title": "Airport Score Category"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/australian_airports.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [
+        {"filter": "datum.type === 'large_airport'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 15,
+        "dy": -2,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude_deg", "type": "quantitative"},
+        "latitude": {"field": "latitude_deg", "type": "quantitative"},
+        "text": {"field": "name", "type": "nominal", "title": "Airport Name"}
       }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null,
+      "padding": 0  
+    },
+    "axis": {
+      "domain": false,
+      "grid": false,
+      "ticks": false,
+      "labels": false 
+    },
+    "background": "#f9f6f2"
+  }
 }
