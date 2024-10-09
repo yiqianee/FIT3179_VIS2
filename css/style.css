@@ -1,8 +1,44 @@
 #symbol_map {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	/*height: 1000px;
-	width: 800px;*/
+    margin: 15px 0px 0px 0px;  
+    padding: 0;                
+    width: 100%;               
+    height: 600px;            
+    max-width: 850px;          
+}
+
+#butterfly_chart {
+    margin: 0 auto;           
+    margin-left: 30px; 
+	margin-top: -60px;      
+    padding: 0;               
+    width: 80%;              
+    height: 500px;            
+}
+
+#cargo_movement {
+    margin: 0 auto;          
+	margin-left:30px;
+	margin-top: 50px;      
+    padding: 0;              
+    width: 80%;               
+    height: 500px;            
+}
+
+.heatmap-pie-container {
+	margin-left: 50px; 
+	margin-top: -60px;
+  }
+  
+#aircraft_movement,
+#international_airlines {
+margin-left: 30px; 
+
+}
+
+.pie-chart-container {
+margin-top: -80px; 
+}
+
+.heatmap-chart{
+	margin-top: -70px;
 }
