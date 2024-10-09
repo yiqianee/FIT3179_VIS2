@@ -1,48 +1,299 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
-  <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 
   <style>
-    .chart-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px; 
-      align-items: center; 
+    body {
+      background-color: #f9f6f2;
     }
 
-    #symbol_map, #butterfly_chart {
-      width: 80%; 
-      height: 600px; 
+    .content-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 95%;
+      margin: 0 auto;
+      padding: 0;
     }
+
+    .content-wrapper-2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 90%;
+      margin-top: 50px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .text-box {
+      flex-basis: 30%;
+      margin: 0 5px;
+      margin-left: 20px;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      height: auto
+    }
+
+    .text-box-2 {
+      flex-basis: 30%;
+      margin: 0 5px;
+      margin-left: 20px;
+      margin-top: 100px;
+      padding: 15px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      height: auto
+    }
+
+    .map-container {
+      flex-basis: 60%;
+      height: 600px;
+      margin: 0 5px;
+      padding: 0;
+    }
+
+    .chart-title {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 50px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .additional-chart {
+      width: 100%;
+      height: 600px; /* Adjusted height */
+      margin: 10px auto; /* Adjusted margin */
+      padding: 0;
+      flex-basis: 75%;
+      margin-right: 20px;
+    }
+
+    .middle-text {
+      flex-basis: 60%;
+      font-size: 18px;
+      color: #333;
+      margin: 20px 0 10px 30px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .chart-wrapper {
+      display: block;
+      width: 100%;
+      margin: 20px auto;
+    }
+
+    .heatmap-pie-container {
+      display: flex; /* Create a flex container for the heat map and pie chart */
+      justify-content: space-evenly; /* Even space between heatmap and pie chart */
+      align-items: stretch; /* Align both charts to have the same height */
+      width: 100%;
+      margin: -20px 0;
+    }
+
+    .heatmap-chart,
+    .pie-chart-container {
+      flex-basis: 48%; /* Set equal space for both charts */
+      margin: 0;
+      height: 450px; /* Ensure consistent height */
+    }
+
+    .pie-chart-container {
+      display: flex;
+      flex-direction: column; /* Arrange pie chart and filters vertically */
+      align-items: center; /* Center the content */
+    }
+
+    .filters {
+      margin-top: 20px; /* Add some space above the filters */
+      width: 100%;
+      text-align: center;
+    }
+
+    .slider {
+      width: 200px;
+    }
+
+    #year-display {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    #airport-select {
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    .small-text-box {
+    flex-basis: 35%; /* Adjusted width to make the boxes smaller */
+    margin: 0 10px; /* Added horizontal margin to create space between boxes */
+    margin-left: 60px;
+    margin-right: 120px;
+    padding: 10px 15px; /* Adjust padding if necessary */
+    margin-top: 10px
+    }
+
+    .text-box-container {
+    display: flex;
+    justify-content: space-between;  /* Ensure equal space between the boxes */
+    align-items: stretch;            /* Make both boxes stretch to the same height */
+    margin: 20px 0; 
+
+  }
   </style>
-  
 </head>
 <body>
   
-<div class="chart-container">
-  <div id="symbol_map"></div>  
-  <div id="butterfly_chart"></div>  
+<div class="chart-title">Australian Airport Statistics ✈️ ☁️</div>
+
+<div class="content-wrapper">
+  <!-- Left Text Box -->
+  <div class="text-box">
+    <h2>Do you know airport have scores?</h2>
+    </p>
+    Sydney Kingsford Smith Airport has consistently achieved the highest overall score among all Australian airports.
+    </p>
+    <p>
+      The score is calulated based on a range of factors including airline and passenger surveys, as well as objective indicators
+      such as such as on-time performance, flight delays, and passenger complaints.
+    </p>
+  </div>
+
+  <!-- Map Container -->
+  <div id="symbol_map" class="map-container"></div>
+
+  <!-- Right Text Box -->
+  <div class="text-box">
+    <h2>Interesting Facts</h2>
+    <p>
+      Sydney Kingsford Smith International Airport is the busiest airport in Australia. 
+      It handles the most international and domestic passengers every year and is a hub for 
+      many airlines operating in the region.
+    </p>
+    <p>
+      The score is calulated based on a range of factors including airline and passenger surveys, as well as objective indicators
+      such as such as on-time performance, flight delays, and passenger complaints.
+    </p>
+  
+  </div>
 </div>
 
-<script type="text/javascript">
-  // Embedding the symbol map
-  var spec2 = "js/symbol_map.vg.json";
-  vegaEmbed('#symbol_map', spec2).then(function(result) {
-    // Access the Vega view instance
-  }).catch(console.error);
+<!-- Middle Text between left box and butterfly chart -->
+<!-- <div class="middle-text">
+  The table below shows the passenger traffic for the top airports in Australia, comparing domestic and international passengers.
+</div> -->
 
-  // Embedding the butterfly chart
-  var spec3 = "js/dom_int_passengers.vg.json";
-  vegaEmbed('#butterfly_chart', spec3).then(function(result) {
-    // Access the Vega view instance for the butterfly chart
-  }).catch(console.error);
+<!-- Additional Charts -->
+
+<!-- <div class="chart-wrapper">
+  <div id="butterfly_chart" class="additional-chart"></div>
+</div> -->
+<!-- Butterfly Chart Container with Text Box on the Right -->
+<div class="content-wrapper">
+  <!-- Butterfly Chart -->
+  <div id="butterfly_chart" class="additional-chart"></div>
+
+  <!-- Right Text Box (for the Butterfly Chart) -->
+  <div class="text-box">
+    <h2>Passenger Traffic Insights</h2>
+    <p>
+      The chart illustrates the passenger traffic across Australia's top airports. 
+      Domestic passenger traffic tends to be higher than international traffic, except for major hubs like Sydney and Melbourne.
+    </p>
+    <p>
+      Understanding these patterns can help allocate resources and improve airport services for both domestic and international passengers.
+    </p>
+  </div>
+</div>
+
+<div class="content-wrapper-2">
+<!-- Right Text Box (for the Butterfly Chart) -->
+  <div class="text-box-2">
+    <h2>Cargo Movement Insights</h2>
+    <p>
+      The chart illustrates the passenger traffic across Australia's top airports. 
+      Domestic passenger traffic tends to be higher than international traffic, except for major hubs like Sydney and Melbourne.
+    </p>
+    <p>
+      Understanding these patterns can help allocate resources and improve airport services for both domestic and international passengers.
+    </p>
+  </div>
+    <!-- Butterfly Chart -->
+    <div id="cargo_movement" class="additional-chart"></div>
+  </div>
+</div>
+<!-- 
+<div class="chart-wrapper">
+  <div id="cargo_movement" class="additional-chart"></div>
+</div> -->
+
+<!-- Heat Map and Pie Chart Container with Text Boxes Above -->
+<div class="chart-wrapper">
+ 
+
+  <!-- Heat Map and Pie Chart Side-by-Side -->
+  <div class="text-box-container" style="display: flex; justify-content: space-between; align-items: stretch; margin-top: 20px;">
+    <!-- Heat Map Container -->
+    <div id="aircraft_movement" class="heatmap-chart additional-chart"></div>
+
+    <!-- Pie Chart Container with Filters Below -->
+    <div id="international_airlines" class="pie-chart-container">
+      <!-- Pie Chart -->
+      <div class="additional-chart" id="pie_chart_area"></div>
+    </div>
+  </div>
+
+   <!-- Container for the text boxes above the charts -->
+   <div class="heatmap-pie-text-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+    <!-- Text Box Above the Heat Map -->
+    <div class="text-box small-text-box">
+      <h2>Aircraft Movement Trends</h2>
+      <p>
+        The heatmap illustrates the monthly aircraft movements across different years, showing seasonal and yearly variations. 
+        Analyzing these trends can provide insights into airport activity and performance.
+      </p>
+    </div>
+
+    <!-- Text Box Above the Pie Chart -->
+    <div class="text-box small-text-box">
+      <h2>Top International Airlines</h2>
+      <p>
+        This pie chart displays the top 20 international airlines operating in Australian airports, providing an overview of airline traffic.
+        It highlights the most prominent carriers serving various destinations.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  // Embed each chart using vegaEmbed
+  vegaEmbed('#symbol_map', 'js/symbol_map.vg.json').catch(console.error);
+  vegaEmbed('#butterfly_chart', 'js/dom_int_passengers.vg.json').catch(console.error);
+  vegaEmbed('#cargo_movement', 'js/cargo.vg.json').catch(console.error);
+  vegaEmbed('#aircraft_movement', 'js/aircraft_mvm.vg.json').catch(console.error);
+  vegaEmbed('#pie_chart_area', 'js/int_airlines.vg.json').catch(console.error); // Corrected selector for pie chart
 </script>
 
 </body>
