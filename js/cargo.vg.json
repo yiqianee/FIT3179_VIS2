@@ -1,78 +1,117 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cargo_movements.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cargo_movements.csv"
+  },
+  "title": {
+    "text": "Trend of Cargo Movements in Top 5 Airports (2010-2023)",
+    "fontSize": 24,
+    "font": "Arial",
+    "anchor": "middle"
+  },
+  "transform": [
+    {
+      "calculate": "datetime(datum.Year, datum.Month - 1)",
+      "as": "Date"
     },
-    "title": {
-      "text": "Trend of Cargo Movements in Top 5 Airports (2010-2023) ",
-      "fontSize": 24,
-      "font": "Arial",
-      "anchor": "middle"
+    {
+      "fold": ["Adelaide", "Brisbane", "Melbourne", "Perth", "Sydney"],
+      "as": ["City", "Cargo"]
     },
-    "transform": [
-      {
-        "calculate": "datetime(datum.Year, datum.Month - 1)",
-        "as": "Date"
-      },
-      {
-        "fold": ["Adelaide", "Brisbane", "Melbourne", "Perth", "Sydney"],
-        "as": ["City", "Cargo"]
-      },
-      {
-        "filter": "datum.Year != 2024"  
-      }
-    ],
-    "mark": {"type": "area", "line": true},
-    "width": 820,
-    "height": 350,
-    "encoding": {
-      "x": {
-        "field": "Date", 
-        "type": "temporal", 
-        "title": "Year",
-        "axis": {
-        "titleFontSize": 14,  
-        "labelFontSize": 12
-        }},
-      "y": {
-        "aggregate": "sum",
-        "field": "Cargo",
-        "type": "quantitative",
-        "title": "Cargo Movements",
-        "stack": "zero",
-        "axis": {
-        "titleFontSize": 14,  
-        "labelFontSize": 12
-      }
-      },
-      "color": {
-        "field": "City",
-        "type": "nominal",
-        "title": "City",
-        "scale": {
-        "range": ["darkblue", "#9467bd", "#3182bd", "#9edae5", "#4b6cb7"]
+    {
+      "filter": "datum.Year != 2024"
+    }
+  ],
+  "width": 820,
+  "height": 350,
+  "layer": [
+    {
+      "mark": {"type": "area", "line": true},
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+          }
         },
-        "legend": {
-      "orient": "right",        
-      "offset": 40,              
-      "titleFontSize": 14,
-      "labelFontSize": 12
-    }
+        "y": {
+          "aggregate": "sum",
+          "field": "Cargo",
+          "type": "quantitative",
+          "title": "Cargo Movements",
+          "stack": "zero",
+          "axis": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+          }
+        },
+        "color": {
+          "field": "City",
+          "type": "nominal",
+          "title": "City",
+          "scale": {
+            "range": ["darkblue", "#9467bd", "#3182bd", "#9edae5", "#4b6cb7"]
+          },
+          "legend": {
+            "orient": "right",
+            "offset": 40,
+            "titleFontSize": 14,
+            "labelFontSize": 12
+          }
+        },
+        "order": {
+          "field": "City",
+          "type": "ordinal",
+          "sort": ["Brisbane", "Melbourne", "Adelaide", "Perth", "Sydney"]
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date", "timeUnit": "yearmonth", "format": "%b %Y"},
+          {"field": "City", "type": "nominal", "title": "City"},
+          {"aggregate": "sum", "field": "Cargo", "type": "quantitative", "title": "Cargo Movements", "format": ",d"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "font": "Arial",
+        "fontSize": 13,
+        "fontWeight": "normal",
+        "color": "black",
+        "dx": -250,  
+        "dy": -150,
+        "opacity": 1   
       },
-      "order": {
-      "field": "City",
-      "type": "ordinal",
-      "sort": ["Brisbane", "Melbourne", "Adelaide", "Perth", "Sydney"]
+      "encoding": {
+        "text": {
+          "value": "Sydney leading in all Australian Airports"
+        }
+      }
     },
-      "tooltip": [
-      {"field": "Date", "type": "temporal", "title": "Date", "timeUnit": "yearmonth", "format": "%b %Y"},
-      {"field": "City", "type": "nominal", "title": "City"},
-      {"aggregate": "sum", "field": "Cargo", "type": "quantitative", "title": "Cargo Movements", "format": ",d"}
-    ]
-    },
-    "config": {
-    "background": "#f9f6f2"
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "font": "Arial",
+        "fontSize": 13,
+        "fontWeight": "normal",
+        "color": "black",
+        "dx": 60,  
+        "dy": 80,
+        "opacity": 1   
+      },
+      "encoding": {
+        "text": {
+          "value": "Melbourne starts to overtake Sydney"
+        }
+      }
     }
-
+  ],
+  "config": {
+    "background": "#f9f6f2"
   }
-  
+}
