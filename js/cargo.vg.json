@@ -5,8 +5,8 @@
   },
   "title": {
     "text": "Trend of Cargo Movements in Top 5 Airports (2010-2023)",
-    "fontSize": 24,
-    "font": "Arial",
+    "fontSize": 26,
+    "font": "Georgia",
     "anchor": "middle"
   },
   "transform": [
@@ -22,7 +22,7 @@
       "filter": "datum.Year != 2024"
     }
   ],
-  "width": 820,
+  "width": 800,
   "height": 350,
   "layer": [
     {
@@ -33,8 +33,10 @@
           "type": "temporal",
           "title": "Year",
           "axis": {
+            "titleFont": "Georgia",
             "titleFontSize": 14,
-            "labelFontSize": 12
+            "labelFontSize": 14,
+            "labelFont": "Georgia"
           }
         },
         "y": {
@@ -44,8 +46,10 @@
           "title": "Cargo Movements",
           "stack": "zero",
           "axis": {
+            "titleFont": "Georgia",
             "titleFontSize": 14,
-            "labelFontSize": 12
+            "labelFontSize": 14,
+            "labelFont": "Georgia"
           }
         },
         "color": {
@@ -57,9 +61,11 @@
           },
           "legend": {
             "orient": "right",
-            "offset": 40,
-            "titleFontSize": 14,
-            "labelFontSize": 12
+            "offset": 15,
+            "titleFont":"Georgia",
+            "labelFont":"Georgia",
+            "titleFontSize": 16,
+            "labelFontSize": 14
           }
         },
         "order": {
@@ -78,8 +84,8 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "font": "Arial",
-        "fontSize": 13,
+        "font": "Georgia",
+        "fontSize": 14,
         "fontWeight": "normal",
         "color": "black",
         "dx": -250,  
@@ -88,7 +94,7 @@
       },
       "encoding": {
         "text": {
-          "value": "Sydney leading in all Australian Airports"
+          "value": "Sydney used to be the leading airport"
         }
       }
     },
@@ -96,17 +102,17 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "font": "Arial",
-        "fontSize": 13,
+        "font": "Georgia",
+        "fontSize": 14,
         "fontWeight": "normal",
         "color": "black",
-        "dx": 60,  
-        "dy": 80,
+        "dx": 95,  
+        "dy": 85,
         "opacity": 1   
       },
       "encoding": {
         "text": {
-          "value": "Melbourne starts to overtake Sydney"
+          "value": " Melbourne starts to overtake Sydney after 2016"
         }
       }
     }

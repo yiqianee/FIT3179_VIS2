@@ -6,8 +6,8 @@
     },
     "title": {
       "text": "Top International Airlines In Major Australian Airports ",
-      "fontSize": 24,
-      "font": "Arial",
+      "fontSize": 26,
+      "font": "Georgia",
       "anchor": "middle",
       "offset": 30
     },
@@ -55,12 +55,12 @@
     "facet": {
       "field": "Australian",
       "type": "nominal",
-      "columns": 3,
-      "title": "Airport",
+      "title": "Airport Name",
       "header": {
         "labelFontSize": 14,
-        "labelFont": "Arial",
-        "titleFontSize": 16
+        "labelFont": "Georgia",
+        "titleFontSize": 16,
+        "titleFont": "Georgia"
       }
     },
     "spec": {
@@ -103,8 +103,8 @@
             "orient": "bottom",
             "titleFontSize": 16,
             "labelFontSize": 14,
-            "titleFont": "Arial",
-            "labelFont": "Arial"
+            "titleFont": "Georgia",
+            "labelFont": "Georgia"
           }
         },
         "tooltip": [

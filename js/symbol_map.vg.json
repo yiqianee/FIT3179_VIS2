@@ -1,12 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
-  "height": 470,
+  "height": 480,
   "title": {
     "text": "Geographical Distribution of Major Airports in Australia",
     "fontSize": 24,
-    "font": "Arial",
-    "anchor": "middle"
+    "font": "Georgia",
+    "anchor": "middle",
+    "offset": 10
   },
   "projection": {
     "type": "mercator",
@@ -66,7 +67,9 @@
             "orient": "right",
             "offset": 20,
             "labelFontSize": 12,
-            "titleFontSize": 13
+            "titleFontSize": 14,
+            "labelFont": "Georgia",
+            "titleFont": "Georgia"
           }
         },
         "color": {
@@ -80,7 +83,9 @@
           "legend": {
             "title": "Airport Type",
             "labelFontSize": 12,
-            "titleFontSize": 13
+            "titleFontSize": 14,
+            "labelFont": "Georgia",
+            "titleFont": "Georgia"
           }
         },
         "tooltip": [
@@ -107,6 +112,7 @@
         "type": "text",
         "fontSize": 12,
         "fontWeight": "bold",
+        "font": "Georgia",
         "color": "black"
       },
       "transform": [

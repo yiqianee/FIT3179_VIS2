@@ -9,9 +9,10 @@
     },
     "title": {
     "text": "Passenger Traffic in Top Airports: Domestic vs. International",
-    "fontSize": 24,  
-    "font": "Arial",  
-    "anchor": "middle"  
+    "fontSize": 26,  
+    "font": "Georgia",  
+    "anchor": "middle",
+    "offset": 20  
     },
     "params": [
       {
@@ -64,7 +65,10 @@
                   "orient": "top",
                   "labelExpr": "abs(datum.value)" ,
                   "titleFontSize": 14,  
-                  "labelFontSize": 12
+                  "labelFontSize": 12,
+                  "labelFont": "Georgia",
+                  "titleFont": "Georgia"
+
                 },
                 "scale": {
                   "domain": [-35000000, 0]
@@ -76,7 +80,9 @@
                 "axis": {
                   "title": "Airport",
                   "titleFontSize": 14,  
-                  "labelFontSize": 11
+                  "labelFontSize": 11,
+                  "labelFont": "Georgia",
+                  "titleFont": "Georgia"
                 }
               },
               "color": {
@@ -95,7 +101,8 @@
               "type": "text",
               "align": "right",
               "dx": -5,
-              "dy": 4
+              "dy": 4,
+              "font": "Georgia"
             },
             "encoding": {
               "x": {
@@ -127,7 +134,9 @@
                   "title": "Number of International Passengers",
                   "orient": "top",
                   "titleFontSize": 14,  
-                  "labelFontSize": 12
+                  "labelFontSize": 12,
+                  "labelFont": "Georgia",
+                  "titleFont": "Georgia"
                 },
                 "scale": {
                   "domain": [0, 20000000]
@@ -154,7 +163,8 @@
               "type": "text",
               "align": "left",
               "dx": 5,
-              "dy": 4
+              "dy": 4,
+              "font": "Georgia"
             },
             "encoding": {
               "x": {
