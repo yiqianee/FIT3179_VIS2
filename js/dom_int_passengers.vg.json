@@ -9,7 +9,7 @@
     },
     "title": {
     "text": "Passenger Traffic in Top Airports: Domestic vs. International",
-    "fontSize": 18,  
+    "fontSize": 24,  
     "font": "Arial",  
     "anchor": "middle"  
     },
@@ -20,7 +20,7 @@
         "bind": {
           "input": "range",
           "min": 2010,
-          "max": 2024,
+          "max": 2023,
           "step": 1,
           "name": "Year: "
         }
@@ -62,7 +62,9 @@
                 "axis": {
                   "title": "Number of Domestic and Regional Passengers", 
                   "orient": "top",
-                  "labelExpr": "abs(datum.value)" 
+                  "labelExpr": "abs(datum.value)" ,
+                  "titleFontSize": 14,  
+                  "labelFontSize": 12
                 },
                 "scale": {
                   "domain": [-35000000, 0]
@@ -72,14 +74,16 @@
                 "field": "Airport",
                 "type": "nominal",
                 "axis": {
-                  "title": "Airport"
+                  "title": "Airport",
+                  "titleFontSize": 14,  
+                  "labelFontSize": 11
                 }
               },
               "color": {
                 "value": "lightblue"
               },
               "tooltip": [
-                { "field": "Sum_Domestic_Total", "type": "quantitative", "title": "Domestic and Regional Passengers" },  
+                { "field": "Sum_Domestic_Total", "type": "quantitative", "title": "Domestic and Regional Passengers", "format": ",d" },  
                 { "field": "Airport", "type": "nominal", "title": "Airport" },
                 { "field": "Year", "type": "ordinal", "title": "Year" }
               ]
@@ -121,7 +125,9 @@
                 "type": "quantitative",
                 "axis": {
                   "title": "Number of International Passengers",
-                  "orient": "top"
+                  "orient": "top",
+                  "titleFontSize": 14,  
+                  "labelFontSize": 12
                 },
                 "scale": {
                   "domain": [0, 20000000]
@@ -136,7 +142,7 @@
                 "value": "darkblue"
               },
               "tooltip": [
-                { "field": "Sum_International_Total", "type": "quantitative", "title": "International Passengers" },
+                { "field": "Sum_International_Total", "type": "quantitative", "title": "International Passengers", "format": ",d" },
                 { "field": "Airport", "type": "nominal", "title": "Airport" },
                 { "field": "Year", "type": "ordinal", "title": "Year" }
               ]

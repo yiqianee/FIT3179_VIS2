@@ -49,10 +49,10 @@
     }
 
     .text-box-2 {
-      flex-basis: 30%;
+      flex-basis: 25%;
       margin: 0 5px;
-      margin-left: 20px;
-      margin-top: 100px;
+      margin-left: -10px;
+      margin-top: 50px;
       padding: 15px;
       background-color: #f2f2f2;
       border: 1px solid #ccc;
@@ -61,6 +61,21 @@
       line-height: 1.5;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
       height: auto
+    }
+
+    .text-box-butterfly {
+      flex-basis: 20%;
+      margin: 20px;
+      margin-left: -10px;
+      margin-top: 50px;
+      padding: 15px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      height: auto;
     }
 
     .map-container {
@@ -75,7 +90,8 @@
       font-family: Arial, sans-serif;
       font-size: 50px;
       font-weight: bold;
-      margin: 10px 0;
+      margin-top: 25px;
+      margin-bottom: 1px;
     }
 
     .additional-chart {
@@ -85,15 +101,6 @@
       padding: 0;
       flex-basis: 75%;
       margin-right: 20px;
-    }
-
-    .middle-text {
-      flex-basis: 60%;
-      font-size: 18px;
-      color: #333;
-      margin: 20px 0 10px 30px;
-      padding: 0;
-      text-align: left;
     }
 
     .chart-wrapper {
@@ -115,6 +122,7 @@
       flex-basis: 48%; /* Set equal space for both charts */
       margin: 0;
       height: 450px; /* Ensure consistent height */
+      margin-top : 200px;
     }
 
     .pie-chart-container {
@@ -160,131 +168,157 @@
     margin: 20px 0; 
 
   }
+
+  .bordered-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping for better responsiveness */
+  padding: 1px;
+  border: 1px solid #444; /* Adds a solid border */
+  border-radius: 50px; /* Optional: Adds rounded corners */
+  margin: 0px auto; /* Adds spacing around the bordered container */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  background-color: #f9f6f2; /* Optional: Sets a background color */
+  width: 1350px; /* Fixed width */
+  height: 500px; /* Fixed height */
+  margin: 30px auto 20px auto;
+  }
+
+  .map-bordered-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping for better responsiveness */
+  padding: 1px;
+  border: 1px solid #444; /* Adds a solid border */
+  border-radius: 50px; /* Optional: Adds rounded corners */
+  margin: 0px auto; /* Adds spacing around the bordered container */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  background-color: #f9f6f2; /* Optional: Sets a background color */
+  width: 1350px; /* Fixed width */
+  height: 560px; /* Fixed height */
+  margin: 10px auto 20px auto;
+  }
+
+  .butterfly-bordered-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping for better responsiveness */
+  padding: 1px;
+  border: 1px solid #444; /* Adds a solid border */
+  border-radius: 50px; /* Optional: Adds rounded corners */
+  margin: 0px auto; /* Adds spacing around the bordered container */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  background-color: #f9f6f2; /* Optional: Sets a background color */
+  width: 1350px; /* Fixed width */
+  height: 560px; /* Fixed height */
+  margin: 30px auto 20px auto;
+  overflow: visible;
+  }
   </style>
 </head>
 <body>
-  
+
 <div class="chart-title">Australian Airport Statistics ✈️ ☁️</div>
 
-<div class="content-wrapper">
-  <!-- Left Text Box -->
-  <div class="text-box">
-    <h2>Do you know airport have scores?</h2>
-    </p>
-    Sydney Kingsford Smith Airport has consistently achieved the highest overall score among all Australian airports.
-    </p>
-    <p>
-      The score is calulated based on a range of factors including airline and passenger surveys, as well as objective indicators
-      such as such as on-time performance, flight delays, and passenger complaints.
-    </p>
-  </div>
+<div class="map-bordered-container">
+  <div class="content-wrapper">
+    <!-- Left Text Box -->
+    <div class="text-box">
+    <h2>Geographical Spread of Airports</h2>
+      <p>
+        Most of Australia’s major airports are <b>concentrated along the eastern side</b>, where <b>population</b> and <b>economic activity</b> are highest, 
+        including Sydney, Melbourne, and Brisbane. Each state also has a large-sized airport, 
+        such as Perth in the west and Darwin in the north, ensuring strong national connectivity.
+      </p>
+      <h2>Do you know airport have scores?</h2>
+      </p>
+      <b>Sydney Kingsford Smith Airport</b> has consistently achieved the highest overall score among all Australian airports.
+      </p>
+      <p>
+        The score is calulated based on a range of factors including airline and passenger surveys, as well as objective indicators
+        such as such as on-time performance, flight delays, and passenger complaints.
+      </p>
+    </div>
+    
+    <div id="symbol_map" class="map-container"></div>
 
-  <!-- Map Container -->
-  <div id="symbol_map" class="map-container"></div>
-
-  <!-- Right Text Box -->
-  <div class="text-box">
-    <h2>Interesting Facts</h2>
-    <p>
-      Sydney Kingsford Smith International Airport is the busiest airport in Australia. 
-      It handles the most international and domestic passengers every year and is a hub for 
-      many airlines operating in the region.
-    </p>
-    <p>
-      The score is calulated based on a range of factors including airline and passenger surveys, as well as objective indicators
-      such as such as on-time performance, flight delays, and passenger complaints.
-    </p>
-  
   </div>
 </div>
 
-<!-- Middle Text between left box and butterfly chart -->
-<!-- <div class="middle-text">
-  The table below shows the passenger traffic for the top airports in Australia, comparing domestic and international passengers.
-</div> -->
+<div class="butterfly-bordered-container">
+  <div class="content-wrapper">
 
-<!-- Additional Charts -->
+    <div id="butterfly_chart" class="additional-chart"></div>
+    <div class="text-box-butterfly">
+      <h2>Passenger Traffic Battle</h2>
+      <p>
+        <b>Sydney</b> and <b>Melbourne</b> are Australia’s busiest airports, buzzing with energy and activity year-round. 
+      </p>
+      <p>
+        Nestled in the heart of <b>highly populated regions</b>, and as <b>major economic and cultural centers</b>,
+        these airports naturally thrive as bustling hubs for both domestic and international flights,
+        attracting a diverse mix of travelers and serving as prime gateways to Australia’s most iconic destinations.
+         What sets these airports apart is their <b>world-class infrastructures</b> like multiple runways, 
+         spacious terminals, and seamless ground transportation. 
+      </p>
+    </div>
+  </div>
+</div>
+</div>
 
-<!-- <div class="chart-wrapper">
-  <div id="butterfly_chart" class="additional-chart"></div>
-</div> -->
-<!-- Butterfly Chart Container with Text Box on the Right -->
-<div class="content-wrapper">
-  <!-- Butterfly Chart -->
-  <div id="butterfly_chart" class="additional-chart"></div>
-
+<div class="bordered-container">
+  <div class="content-wrapper-2">
   <!-- Right Text Box (for the Butterfly Chart) -->
-  <div class="text-box">
-    <h2>Passenger Traffic Insights</h2>
-    <p>
-      The chart illustrates the passenger traffic across Australia's top airports. 
-      Domestic passenger traffic tends to be higher than international traffic, except for major hubs like Sydney and Melbourne.
-    </p>
-    <p>
-      Understanding these patterns can help allocate resources and improve airport services for both domestic and international passengers.
-    </p>
-  </div>
-</div>
-
-<div class="content-wrapper-2">
-<!-- Right Text Box (for the Butterfly Chart) -->
-  <div class="text-box-2">
-    <h2>Cargo Movement Insights</h2>
-    <p>
-      The chart illustrates the passenger traffic across Australia's top airports. 
-      Domestic passenger traffic tends to be higher than international traffic, except for major hubs like Sydney and Melbourne.
-    </p>
-    <p>
-      Understanding these patterns can help allocate resources and improve airport services for both domestic and international passengers.
-    </p>
-  </div>
-    <!-- Butterfly Chart -->
-    <div id="cargo_movement" class="additional-chart"></div>
-  </div>
-</div>
-<!-- 
-<div class="chart-wrapper">
-  <div id="cargo_movement" class="additional-chart"></div>
-</div> -->
-
-<!-- Heat Map and Pie Chart Container with Text Boxes Above -->
-<div class="chart-wrapper">
- 
-
-  <!-- Heat Map and Pie Chart Side-by-Side -->
-  <div class="text-box-container" style="display: flex; justify-content: space-between; align-items: stretch; margin-top: 20px;">
-    <!-- Heat Map Container -->
-    <div id="aircraft_movement" class="heatmap-chart additional-chart"></div>
-
-    <!-- Pie Chart Container with Filters Below -->
-    <div id="international_airlines" class="pie-chart-container">
-      <!-- Pie Chart -->
-      <div class="additional-chart" id="pie_chart_area"></div>
-    </div>
-  </div>
-
-   <!-- Container for the text boxes above the charts -->
-   <div class="heatmap-pie-text-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
-    <!-- Text Box Above the Heat Map -->
-    <div class="text-box small-text-box">
-      <h2>Aircraft Movement Trends</h2>
+    <div class="text-box-2">
+      <h2>From People to Packages</h2>
       <p>
-        The heatmap illustrates the monthly aircraft movements across different years, showing seasonal and yearly variations. 
-        Analyzing these trends can provide insights into airport activity and performance.
+        After analyzing passenger traffic, we now explore which airports handle the most cargo movements. 
+      </p>
+      <p>
+        <b>Sydney</b> used to be the major hub for freight transport, managing about 45% of the national cargo. 
+        However, over the years, <b>Melbourne</b> has gradually taken over, becoming the largest hub for cargo volumes in Australia.
       </p>
     </div>
-
-    <!-- Text Box Above the Pie Chart -->
-    <div class="text-box small-text-box">
-      <h2>Top International Airlines</h2>
-      <p>
-        This pie chart displays the top 20 international airlines operating in Australian airports, providing an overview of airline traffic.
-        It highlights the most prominent carriers serving various destinations.
-      </p>
+      <!-- Butterfly Chart -->
+      <div id="cargo_movement" class="additional-chart"></div>
     </div>
   </div>
 </div>
 
+<div class="top-container">
+  <!-- Faceted Donut Charts -->
+  <div id="facet_donut_charts" class="donut-chart"></div>
+  <div class="text-box-donut">
+    <h2>Which Airline Do Aussies Love?</h2>
+
+    <p>
+      The chart shows the most popular airlines in Australian Airport.
+      While <b>Qantas</b>, nicknamed "The Flying Kangaroo," remains the top choice for Australian passengers.
+      Its strong presence at key airports solidifies its 
+      position as the leading carrier for both domestic and international travel.
+    </p>
+  </div>
+</div>
+
+<!-- Bottom container for heatmap and text box -->
+<div class="bottom-container">
+  <!-- Text box for heat map insights -->
+  <div class="text-box-heatmap">
+    <h2>Airport Peak Seasons Revealed !</h2>
+    <p>
+      Lastly, let’s find out when these people and packages make the airports busiest!  
+    </p>
+    <p>
+    The visualization shows clear seasonal variations, with <b>July to October </b>consistently having higher activity levels. 
+    This extended peak travel season is driven by <b>school holidays</b>, <b>tourism</b>, and <b>favorable weather conditions</b>, 
+    resulting in increased flights and making it a crucial time for the aviation industry.
+    </p>
+  </div>
+  <div id="aircraft_movement" class="heatmap-container"></div>
+</div>
 
 
 <script type="text/javascript">
@@ -293,7 +327,9 @@
   vegaEmbed('#butterfly_chart', 'js/dom_int_passengers.vg.json').catch(console.error);
   vegaEmbed('#cargo_movement', 'js/cargo.vg.json').catch(console.error);
   vegaEmbed('#aircraft_movement', 'js/aircraft_mvm.vg.json').catch(console.error);
-  vegaEmbed('#pie_chart_area', 'js/int_airlines.vg.json').catch(console.error); // Corrected selector for pie chart
+  // vegaEmbed('#pie_chart_area', 'js/int_airlines.vg.json').catch(console.error); // Corrected selector for pie chart
+  vegaEmbed('#facet_donut_charts', 'js/airlines.vg.json').catch(console.error);
+  
 </script>
 
 </body>

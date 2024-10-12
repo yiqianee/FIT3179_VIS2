@@ -5,18 +5,19 @@
       "format": {"type": "csv"}
     },
     "transform": [
-      {"filter": "datum.Aircraft_Movements != null && datum.Aircraft_Movements > 0"}
+      {"filter": "datum.Aircraft_Movements != null && datum.Aircraft_Movements > 0"},
+      {"filter": "datum.Year != '2009'"}
     ],
     "mark": "rect",
     "encoding": {
-      "x": {
+      "y": {
         "field": "Month",
         "type": "ordinal",
         "title": "Month",
         "sort": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
         "axis": {"labelAngle": 0}
       },
-      "y": {
+      "x": {
         "field": "Year",
         "type": "ordinal",
         "title": "Year",
@@ -27,11 +28,11 @@
         "type": "quantitative",
         "title": "Aircraft Movements",
         "scale": {
-          "domain": [0, 20000, 40000, 60000, 80000, 100000, 120000, 130000],
+          "domain": [0, 20000, 40000, 60000, 80000, 90000, 118000, 130000, 140000],
           "range": [
-            "#f7fbff", "#deebf7", "#c6dbef", "#9ecae1",
-            "#6baed6", "#4292c6", "#2171b5", "#08306b", 
-            "#22487a", "#1b305b", "#14183d","#0d001d"
+              "#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", 
+              "#6baed6", "#4292c6", "#2171b5", "#08306b",
+              "#22487a", "#1b305b", "#14183d","#0d001d"
           ]
         },
         "legend": {
@@ -42,17 +43,18 @@
       "tooltip": [
         {"field": "Year", "type": "ordinal", "title": "Year"},
         {"field": "Month", "type": "ordinal", "title": "Month"},
-        {"field": "Aircraft_Movements", "type": "quantitative", "title": "Aircraft Movements"}
+        {"field": "Aircraft_Movements", "type": "quantitative", "title": "Aircraft Movements", "format": ",d" }
       ]
     },
     "title": {
     "text": "Aircraft Movements in Different Months Across Years",
-    "fontSize": 18,  
+    "fontSize": 24,  
     "font": "Arial",  
-    "anchor": "middle"  
+    "anchor": "middle",
+    "offset": 20
     },
-    "width": 450,
-    "height": 350,
+    "width": 700,
+    "height": 300,
     "config": {
         "background": "#f9f6f2",
       "axis": {"labelFontSize": 12, "titleFontSize": 14},

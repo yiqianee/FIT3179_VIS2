@@ -3,13 +3,13 @@
     padding: 0;                
     width: 100%;               
     height: 600px;            
-    max-width: 850px;          
+    max-width: 1050px;          
 }
 
 #butterfly_chart {
     margin: 0 auto;           
     margin-left: 30px; 
-	margin-top: -60px;      
+	margin-top: -10px;      
     padding: 0;               
     width: 80%;              
     height: 500px;            
@@ -18,27 +18,128 @@
 #cargo_movement {
     margin: 0 auto;          
 	margin-left:30px;
-	margin-top: 50px;      
+	margin-top: 20px;      
     padding: 0;              
     width: 80%;               
     height: 500px;            
 }
 
-.heatmap-pie-container {
-	margin-left: 50px; 
-	margin-top: -60px;
-  }
-  
-#aircraft_movement,
-#international_airlines {
-margin-left: 30px; 
-
-}
-
-.pie-chart-container {
-margin-top: -80px; 
-}
-
 .heatmap-chart{
-	margin-top: -70px;
+	margin-top: 10px;
 }
+
+.heatmap-container,
+.donut-container {
+  width: 100%; /* Make container take full width of bordered box */
+  height: 450px; /* Adjust height */
+  margin-bottom: 10px; /* Space between chart and text box */
+}
+
+.heatmap-bordered-container .text-box,
+.donut-bordered-container .text-box {
+  width: 80%; /* Text box width inside bordered container */
+  margin: 0; /* Remove additional margins */
+  padding: 10px;
+}
+
+
+.two-charts-wrapper {
+    display: flex;
+    justify-content: space-between; /* Ensure containers are side by side */
+    align-items: stretch; /* Align both containers to have the same height */
+    width: 100%; /* Full width of wrapper */
+    margin-top: 20px; /* Add margin above */
+  }
+
+  /* Container for heat map and text box */
+  .bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping for better responsiveness */
+    padding: 1px;
+    border: 1px solid #444; /* Adds a solid border */
+    border-radius: 50px; /* Optional: Adds rounded corners */
+    margin: 0px auto; /* Adds spacing around the bordered container */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    background-color: #f9f6f2; /* Optional: Sets a background color */
+    width: 1350px; /* Fixed width */
+    height: 430px; /* Fixed height */
+    margin: 30px auto 20px auto;
+    overflow: visible;
+  }
+
+  /* Heat map container */
+  .heatmap-container {
+    width: 65%;
+    height: 500px;
+    margin-right: 60px;
+    margin-top: 5px;
+  }
+
+  /* Text box container */
+  .text-box-heatmap {
+    flex-basis: 20%;
+    margin: 20px;
+    margin-left: 70px;
+    margin-top: -70px;
+    padding: 15px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
+  }
+
+  .text-box-donut {
+    flex-basis: 16%;
+    margin: 20px;
+    margin-right: 45px;
+    margin-top: 14px;
+    padding: 15px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
+  }
+
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping for better responsiveness */
+    padding: 1px;
+    border: 1px solid #444; /* Adds a solid border */
+    border-radius: 50px; /* Optional: Adds rounded corners */
+    margin: 0px auto; /* Adds spacing around the bordered container */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    background-color: #f9f6f2; /* Optional: Sets a background color */
+    width: 1350px; /* Fixed width */
+    height: 380px; /* Fixed height */
+    margin: 30px auto 20px auto;
+    overflow: visible;
+  }
+
+  /* Individual donut chart container */
+  .donut-chart {
+    width: 220px; /* Adjust width for each donut chart */
+    height: 220px; /* Fixed height for donut charts */
+    margin-top: -130px;
+    margin-left: 60px
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1400px;
+  }
+
+  

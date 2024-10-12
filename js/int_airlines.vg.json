@@ -1,120 +1,102 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cleaned_international_airlines.csv",
-      "format": {"type": "csv"}
-    },
-    "title": {
-    "text": "Top 20 International Airlines in Australian Airports 🌏",
-    "fontSize": 18,  
-    "font": "Arial",  
-    "anchor": "middle"  
-    },
-    "params": [
-      {
-        "name": "selectedYear",
-        "value": 2020,
-        "bind": {
-          "input": "range",
-          "min": 2010,
-          "max": 2024,
-          "step": 1,
-          "name": "Select Year: "
-        }
-      },
-      {
-        "name": "selectedAirport",
-        "value": "Brisbane",
-        "bind": {
-          "input": "select",
-          "options": [
-            "Adelaide",
-            "Brisbane",
-            "Cairns",
-            "Canberra",
-            "Darwin",
-            "Gold Coast",
-            "Melbourne",
-            "Perth",
-            "Sydney"
-          ],
-          "name": "Select Airport: "
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cleaned_international_airlines.csv",
+    "format": {"type": "csv"}
+  },
+  "title": {
+    "text": "Top 10 International Airlines in Australian Airports 🌏",
+    "fontSize": 24,
+    "font": "Arial",
+    "anchor": "middle"
+  },
+  "params": [
+    {
+      "name": "selectedAirport",
+      "value": "Brisbane",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Adelaide",
+          "Brisbane",
+          "Cairns",
+          "Canberra",
+          "Darwin",
+          "Gold Coast",
+          "Melbourne",
+          "Perth",
+          "Sydney"
+        ],
+        "name": "Select Airport: "
       }
-    ],
-    "transform": [
-      {
-        "filter": "datum.Year == selectedYear && datum.Australian == selectedAirport"
-      },
-      {
-        "calculate": "datum.InFlights + datum.OutFlights",
-        "as": "TotalFlights"
-      },
-      {
-        "aggregate": [{"op": "sum", "field": "TotalFlights", "as": "TotalFlightsByAirline"}],
-        "groupby": ["Airline"]
-      },
-      {
-        "window": [{"op": "rank", "as": "rank"}],
-        "sort": [{"field": "TotalFlightsByAirline", "order": "descending"}]
-      },
-      {
-        "filter": "datum.rank <= 20"
-      }
-    ],
-    "mark": {"type": "arc", "tooltip": true, "stroke": null, "strokeWidth": 0},
-    "encoding": {
-      "theta": {"field": "TotalFlightsByAirline", "type": "quantitative"},
-      "color": {"field": "Airline", "type": "nominal",
-        "scale": {
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.Australian == selectedAirport"
+    },
+    {
+      "calculate": "datum.InFlights + datum.OutFlights",
+      "as": "TotalFlights"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "TotalFlights", "as": "TotalFlightsByAirline"}],
+      "groupby": ["Airline"]
+    },
+    {
+      "filter": "datum.TotalFlightsByAirline >= 20000"
+    },
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "TotalFlightsByAirline", "order": "descending"}]
+    },
+    {
+      "filter": "datum.rank <= 10"
+    }
+  ],
+  "mark": {"type": "arc", "tooltip": true, "stroke": null, "strokeWidth": 0, "innerRadius": 60},
+  "encoding": {
+    "theta": {"field": "TotalFlightsByAirline", "type": "quantitative"},
+    "color": {
+      "field": "Airline",
+      "type": "nominal",
+      "scale": {
         "range": [
-        "#00008b",
-    "#1e3d8f",
-    "#74b3e4", 
-    "#9467bd",
-    "#4a8f8b",  
-    "#a27bc8",
-    "#b390d1",
-    "#b7e4c7",  
-    "#c5a6db",
-    "#3182bd",
-    "#3f8fcd",
-    "#5fa6d9",
-    "#9edae5",
-    "#b1e4ed",
-    "#c4edf5",
-    "#d8f5fc",
-    "#4b6cb7",
-    "#5d7dc1",
-    "#788dc9",
-    "#9ba6d2",
-    "#b4bcd9"
+          "#1e3d8f",
+          "#74b3e4",
+          "#9467bd",
+          "#b390d1",
+          "#3182bd",
+          "#5fa6d9",
+          "#c4edf5",
+          "#4b6cb7",
+          "#5d7dc1",
+          "#9ba6d2"
         ]
       },
       "legend": {
-      "orient": "right",        
-      "offset": 40,              
-      "titleFontSize": 14,
-      "labelFontSize": 12
-    }},
-      "tooltip": [
-        {"field": "Airline", "type": "nominal", "title": "Airline"},
-        {"field": "TotalFlightsByAirline", "type": "quantitative", "title": "Total Flights for Airline"}
-      ]
+        "orient": "right",
+        "offset": 40,
+        "titleFontSize": 14,
+        "labelFontSize": 12
+      }
     },
-    "view": {
-      "stroke": null,
-      "padding": {"top": 30, "bottom": 10, "left": 0, "right": 0}
-    },
-    "config": {
-      "background": "#f9f6f2",
-      "view": {"continuousWidth": 300, "continuousHeight": 300},
-      "concat": {"spacing": 10},
-      "title": {
+    "tooltip": [
+      {"field": "Airline", "type": "nominal", "title": "Airline"},
+      {"field": "TotalFlightsByAirline", "type": "quantitative", "title": "Total Flights for Airline"}
+    ]
+  },
+  "view": {
+    "stroke": null,
+    "padding": {"top": 30, "bottom": 10, "left": 0, "right": 0}
+  },
+  "config": {
+    "background": "#f9f6f2",
+    "view": {"continuousWidth": 300, "continuousHeight": 300},
+    "concat": {"spacing": 10},
+    "title": {
       "anchor": "middle",
       "offset": 20
-      }
-      
     }
   }
-  
+}

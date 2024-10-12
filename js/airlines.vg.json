@@ -1,0 +1,127 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cleaned_international_airlines.csv",
+      "format": {"type": "csv"}
+    },
+    "title": {
+      "text": "Top International Airlines In Major Australian Airports ",
+      "fontSize": 24,
+      "font": "Arial",
+      "anchor": "middle",
+      "offset": 30
+    },
+    "transform": [
+      {
+        "filter": {
+          "field": "Australian",
+          "oneOf": ["Adelaide", "Brisbane", "Darwin", "Melbourne", "Perth", "Sydney"]
+        }
+      },
+      {
+        "filter": {
+          "field": "Airline",
+          "oneOf": [
+            "Singapore Airlines",
+            "Jetstar",
+            "Emirates",
+            "Cathay Pacific Airways",
+            "Air New Zealand",
+            "Virgin Australia",
+            "Qantas Airways"
+          ]
+        }
+      },
+      {
+        "calculate": "datum.InFlights + datum.OutFlights",
+        "as": "TotalFlights"
+      },
+      {
+        "aggregate": [
+          {"op": "sum", "field": "TotalFlights", "as": "TotalFlightsByAirline"}
+        ],
+        "groupby": ["Australian", "Airline"]
+      },
+      {
+        "window": [{"op": "sum", "field": "TotalFlightsByAirline", "as": "TotalFlightsBySelectedAirlines"}],
+        "frame": [null, null],
+        "groupby": ["Australian"]
+      },
+      {
+        "calculate": "datum.TotalFlightsByAirline / datum.TotalFlightsBySelectedAirlines",
+        "as": "ProportionOfTotalFlights"
+      }
+    ],
+    "facet": {
+      "field": "Australian",
+      "type": "nominal",
+      "columns": 3,
+      "title": "Airport",
+      "header": {
+        "labelFontSize": 14,
+        "labelFont": "Arial",
+        "titleFontSize": 16
+      }
+    },
+    "spec": {
+      "width": 80,
+      "height": 80,
+      "mark": {
+        "type": "arc",
+        "tooltip": true,
+        "innerRadius": 35,
+        "outerRadius": 70,
+        "stroke": "white",
+        "strokeWidth": 1,
+        "startAngle": 0,
+        "endAngle": 6.283,
+        "minArcLength": 10
+      },
+      "encoding": {
+        "theta": {
+          "field": "ProportionOfTotalFlights", 
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Airline",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#1e3d8f",
+              "#74b3e4",
+              "#9467bd",
+              "#b390d1",
+              "#3182bd",
+              "#5fa6d9",
+              "#c4edf5",
+              "#4b6cb7",
+              "#5d7dc1",
+              "#9ba6d2"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "titleFontSize": 16,
+            "labelFontSize": 14,
+            "titleFont": "Arial",
+            "labelFont": "Arial"
+          }
+        },
+        "tooltip": [
+          {"field": "Airline", "type": "nominal", "title": "Airline"},
+          {"field": "TotalFlightsByAirline", "type": "quantitative", "title": "Total Flights for Airline", "format": ",d"},
+          {"field": "ProportionOfTotalFlights", "type": "quantitative", "title": "Proportion of Total Flights", "format": ".0%"}
+        ]
+      }
+    },
+    "config": {
+      "background": "#f9f6f2",
+      "view": {"continuousWidth": 200, "continuousHeight": 200},
+      "facet": {"spacing": 20},
+      "title": {
+        "anchor": "middle",
+        "offset": 20
+      }
+    }
+  }
+  

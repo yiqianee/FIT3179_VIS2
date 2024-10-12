@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 750,
-  "height": 500,
+  "width": 680,
+  "height": 470,
   "title": {
-    "text": "Geographical Distribution of Major Airports in Australia 📍",
-    "fontSize": 18,
+    "text": "Geographical Distribution of Major Airports in Australia",
+    "fontSize": 24,
     "font": "Arial",
     "anchor": "middle"
   },
   "projection": {
     "type": "mercator",
-    "scale": 630,
-    "center": [145, -28],
-    "translate": [400, 250] 
+    "scale": 600,
+    "center": [140, -29],
+    "translate": [400, 250]
   },
   "layer": [
     {
@@ -23,7 +23,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "stroke": null,         
+        "stroke": "gray",
         "strokeWidth": 0.25
       }
     },
@@ -32,7 +32,7 @@
         "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_hw_week10/refs/heads/main/js/aus_map.json",
         "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
       },
-      "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "gray"}  
+      "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "gray"}
     },
     {
       "data": {
@@ -62,10 +62,12 @@
             "range": [800, 200, 100, 50]
           },
           "legend": {
-          "title": "Score Category",
-          "orient": "right",           
-          "offset": -20                
-      }
+            "title": "Score Category",
+            "orient": "right",
+            "offset": 20,
+            "labelFontSize": 12,
+            "titleFontSize": 13
+          }
         },
         "color": {
           "field": "airport_label",
@@ -79,52 +81,65 @@
             "title": "Airport Type",
             "labelFontSize": 12,
             "titleFontSize": 13
-
           }
         },
         "tooltip": [
           {"field": "name", "title": "Airport Name"},
           {"field": "region_name", "title": "Region Name"},
           {"field": "airport_label", "title": "Airport Type"},
-          {"field": "score", "title": "Score"},
+          {"field": "score", "title": "Airport Score", "format": ",d"},
           {"field": "score_category", "title": "Airport Score Category"}
         ]
       }
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/australian_airports.csv",
-        "format": {"type": "csv"}
+        "values": [
+          {"name": "Brisbane International Airport", "longitude_deg": 152.1094, "latitude_deg": -25.8, "yTransform": 0.5},  
+          {"name": "Melbourne International Airport", "longitude_deg": 144.8467, "latitude_deg": -39.8, "yTransform": 0.7},  
+          {"name": "Sydney Kingsford Smith International Airport", "longitude_deg": 150.5, "latitude_deg": -32.5, "yTransform": 0.8},
+          {"name": "Perth International Airport", "longitude_deg": 115.9589, "latitude_deg": -30.9403, "yTransform": 0.5},
+          {"name": "Adelaide International Airport", "longitude_deg": 138.5306, "latitude_deg": -36.945, "yTransform": 0.6},
+          {"name": "Darwin International Airport / RAAF Darwin", "longitude_deg": 130.8727, "latitude_deg": -10.4147, "yTransform": 0.3}
+        ]
       },
-      "transform": [
-        {"filter": "datum.type === 'large_airport'"}
-      ],
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 15,
-        "dy": -2,
-        "fontSize": 10,
+        "fontSize": 12,
         "fontWeight": "bold",
         "color": "black"
       },
+      "transform": [
+        {
+          "calculate": "datum.latitude_deg + datum.yTransform",
+          "as": "adjusted_latitude"
+        }
+      ],
       "encoding": {
         "longitude": {"field": "longitude_deg", "type": "quantitative"},
-        "latitude": {"field": "latitude_deg", "type": "quantitative"},
-        "text": {"field": "name", "type": "nominal", "title": "Airport Name"}
+        "latitude": {"field": "adjusted_latitude", "type": "quantitative"},
+        "text": {"field": "name", "type": "nominal"}
       }
     }
   ],
   "config": {
     "view": {
-      "stroke": null,
-      "padding": 0  
+      "stroke": "lightgray",
+      "padding": 0
     },
-    "axis": {
+    "axisX": {
       "domain": false,
       "grid": false,
       "ticks": false,
-      "labels": false 
+      "labels": false,
+      "title": null
+    },
+    "axisY": {
+      "domain": false,
+      "grid": false,
+      "ticks": false,
+      "labels": false,
+      "title": null
     },
     "background": "#f9f6f2"
   }

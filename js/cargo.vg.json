@@ -4,8 +4,8 @@
       "url": "https://raw.githubusercontent.com/yiqianee/FIT3179_VIS2/refs/heads/main/data/cargo_movements.csv"
     },
     "title": {
-      "text": "Trend of Cargo Movements in Top 5 Airports (2010-2024) 📦",
-      "fontSize": 18,
+      "text": "Trend of Cargo Movements in Top 5 Airports (2010-2023) ",
+      "fontSize": 24,
       "font": "Arial",
       "anchor": "middle"
     },
@@ -17,19 +17,33 @@
       {
         "fold": ["Adelaide", "Brisbane", "Melbourne", "Perth", "Sydney"],
         "as": ["City", "Cargo"]
+      },
+      {
+        "filter": "datum.Year != 2024"  
       }
     ],
     "mark": {"type": "area", "line": true},
-    "width": 800,
+    "width": 820,
     "height": 350,
     "encoding": {
-      "x": {"field": "Date", "type": "temporal", "title": "Year"},
+      "x": {
+        "field": "Date", 
+        "type": "temporal", 
+        "title": "Year",
+        "axis": {
+        "titleFontSize": 14,  
+        "labelFontSize": 12
+        }},
       "y": {
         "aggregate": "sum",
         "field": "Cargo",
         "type": "quantitative",
         "title": "Cargo Movements",
-        "stack": "zero"
+        "stack": "zero",
+        "axis": {
+        "titleFontSize": 14,  
+        "labelFontSize": 12
+      }
       },
       "color": {
         "field": "City",
@@ -53,7 +67,7 @@
       "tooltip": [
       {"field": "Date", "type": "temporal", "title": "Date", "timeUnit": "yearmonth", "format": "%b %Y"},
       {"field": "City", "type": "nominal", "title": "City"},
-      {"aggregate": "sum", "field": "Cargo", "type": "quantitative", "title": "Cargo Movements"}
+      {"aggregate": "sum", "field": "Cargo", "type": "quantitative", "title": "Cargo Movements", "format": ",d"}
     ]
     },
     "config": {
